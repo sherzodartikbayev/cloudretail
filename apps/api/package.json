@@ -1,4 +1,14 @@
 {
-  "name": "api",
-  "type": "module"
+  "name": "@cloudretail/api",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --outDir dist",
+    "lint": "eslint --fix .",
+    "start": "tsx watch --clear-screen=false --env-file=.env src/index.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.53.1"
+  }
 }

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2015"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext"
+  }
+}
