@@ -1,6 +1,12 @@
 {
-	"name": "cloudretail",
-	"workspaces": [
-		"apps/*"
-	]
+  "name": "cloudretail",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "format": "prettier --ignore-unknown --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.8.0"
+  }
 }
