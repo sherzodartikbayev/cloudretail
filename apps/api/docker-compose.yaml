@@ -1,7 +1,7 @@
 services:
   postgres:
-    image: postgres:16
+    image: postgres:18
     environment:
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=admin
     ports:
       - '127.0.0.1:5432:5432'

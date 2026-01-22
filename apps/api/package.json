@@ -2,13 +2,26 @@
   "name": "@cloudretail/api",
   "type": "module",
   "scripts": {
+    "docker:compose:up": "docker compose up -d",
+    "docker:compose:down": "docker compose down",
     "build": "tsc --outDir dist",
     "lint": "eslint --fix .",
+    "migrate:up": "dotenv npx node-pg-migrate up -- --migrations-table=_migrations",
+    "migrate:down": "dotenv npx node-pg-migrate down -- --migrations-table=_migrations",
+    "migrate:create": "node-pg-migrate create --migration-file-language sql --template-file-name ../../node_modules/node-pg-migrate/templates/migration-template.sql",
     "start": "tsx watch --clear-screen=false --env-file=.env src/index.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@types/pg": "^8.16.0",
+    "dotenv-cli": "^11.0.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.53.1"
+  },
+  "dependencies": {
+    "@types/node-pg-migrate": "^2.3.1",
+    "node-pg-migrate": "^8.0.4",
+    "pg": "^8.17.2",
+    "tsx": "^4.21.0"
   }
 }
