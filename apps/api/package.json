@@ -3,10 +3,13 @@
   "type": "module",
   "scripts": {
     "build": "tsc --outDir dist",
-    "lint": "eslint --fix ."
+    "lint": "eslint --fix .",
+    "start": "tsx watch --clear-screen=false --env-file=.env src/index.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.2"
   }
