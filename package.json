@@ -3,5 +3,11 @@
   "workspaces": [
     "apps/api",
     "apps/ui"
-  ]
+  ],
+  "scripts": {
+    "format": "prettier --ignore-unknown --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10"
+  }
 }
