@@ -1,4 +1,12 @@
 {
   "name": "@cloudretail/ui",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "lint": "eslint --fix ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.2"
+  }
 }
