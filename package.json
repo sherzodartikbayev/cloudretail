@@ -1,0 +1,7 @@
+{
+  "name": "cloudretail",
+  "workspaces": [
+    "apps/api",
+    "apps/ui"
+  ]
+}
