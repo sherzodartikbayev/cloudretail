@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "lib": ["ES2015", "DOM"],
+    "lib": ["ES2015"],
     "module": "esnext",
     "skipLibCheck": true,
     "target": "esnext",

@@ -1,20 +1,16 @@
-import js from '@eslint/js';
-import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
+import eslint from '@eslint/js';
 import safeql from '@ts-safeql/eslint-plugin/config';
 
-export default defineConfig(
+export default tseslint.config(
+  eslint.configs.recommended,
+  tseslint.configs.recommendedTypeChecked,
   {
-    files: ['**/*.{js,ts}'],
-    extends: [js.configs.recommended, tseslint.configs.recommendedTypeChecked],
     languageOptions: {
       parserOptions: {
         projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
-    },
-    rules: {
-      'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': 'warn',
     },
   },
   {
@@ -26,4 +22,16 @@ export default defineConfig(
     overrides: { types: { uuid: 'string' } },
     targets: [{ wrapper: 'client.query' }],
   }),
+  {
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
+    },
+  },
 );
