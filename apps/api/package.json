@@ -6,11 +6,20 @@
     "docker:compose:down": "docker compose down",
     "build": "tsc --outDir dist",
     "lint": "eslint --fix .",
+    "migrate:up": "dotenv npx node-pg-migrate up -- --migrations-table=_migrations",
+    "migrate:down": "dotenv npx node-pg-migrate down -- --migrations-table=_migrations",
+    "migrate:create": "node-pg-migrate create --migration-file-language sql --template-file-name ../../node_modules/node-pg-migrate/templates/migration-template.sql",
     "start": "tsx watch --clear-screen=false --env-file=.env src/index.ts"
+  },
+  "dependencies": {
+    "node-pg-migrate": "^9.0.0",
+    "pg": "^8.23.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.5",
+    "@types/pg": "^8.23.1",
+    "dotenv-cli": "^11.0.0",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.2"
