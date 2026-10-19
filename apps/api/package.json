@@ -12,11 +12,13 @@
     "start": "tsx watch --clear-screen=false --env-file=.env src/index.ts"
   },
   "dependencies": {
+    "@ts-safeql/sql-tag": "^0.2.2",
     "node-pg-migrate": "^9.0.0",
     "pg": "^8.23.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@ts-safeql/eslint-plugin": "^5.4.2",
     "@types/node": "^26.6.5",
     "@types/pg": "^8.23.1",
     "dotenv-cli": "^11.0.0",

@@ -1,6 +1,7 @@
 import js from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
+import safeql from '@ts-safeql/eslint-plugin/config';
 
 export default defineConfig(
   {
@@ -20,4 +21,9 @@ export default defineConfig(
     files: ['**/*.{js,cjs,mjs}'],
     extends: [tseslint.configs.disableTypeChecked],
   },
+  safeql.configs.connections({
+    databaseUrl: 'postgres://postgres:postgres@localhost:5434/postgres',
+    overrides: { types: { uuid: 'string' } },
+    targets: [{ wrapper: 'client.query' }],
+  }),
 );
