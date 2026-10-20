@@ -1,7 +1,13 @@
 import { runner } from 'node-pg-migrate';
-import { DATABASE_URL, MIGRATIONS_DIR, MIGRATIONS_TABLE } from './constant';
+import {
+  DATABASE_URL,
+  HTTP_PORT,
+  MIGRATIONS_DIR,
+  MIGRATIONS_TABLE,
+} from './constant';
 import { seed } from './seed';
 import { pool } from './pool';
+import { app } from './app';
 
 (async () => {
   await runner({
@@ -11,4 +17,7 @@ import { pool } from './pool';
     migrationsTable: MIGRATIONS_TABLE,
   });
   await seed(pool);
+  app.listen(HTTP_PORT, () => {
+    console.info(`Listening on port ${HTTP_PORT}`);
+  });
 })().catch(console.error);
