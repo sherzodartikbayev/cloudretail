@@ -1,17 +1,17 @@
-import { userDao } from '../../daos/users';
-import { pool } from '../../pool';
-import zod from 'zod';
 import crypto from 'node:crypto';
-import { HttpError } from '../../http';
+import { RequestHandler } from 'express';
+import zod from 'zod';
+import { userDao } from '../../daos/users';
 import { tokenDao } from '../../daos/tokens';
-import { Request, Response } from 'express';
+import { pool } from '../../pool';
+import { HttpError } from '../../http';
 
 const bodySchema = zod.object({
   username: zod.string(),
   password: zod.string(),
 });
 
-export const createToken = async (request: Request, response: Response) => {
+const handler: RequestHandler = async (request, response) => {
   const result = bodySchema.parse(request.body);
   const user = await userDao.selectByUsername(pool, {
     username: result.username,
@@ -21,4 +21,10 @@ export const createToken = async (request: Request, response: Response) => {
   }
   const token = await tokenDao.createToken(pool, { userId: user.id });
   return response.status(201).json(token);
+};
+
+export const createToken = {
+  method: 'post' as const,
+  path: '/tokens',
+  handler,
 };
