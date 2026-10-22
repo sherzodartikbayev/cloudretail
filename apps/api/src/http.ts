@@ -39,3 +39,15 @@ export const createHandler = <RequestParams, RequestBody, ResponseBody>({
     response.status(status).json(body);
   };
 };
+
+export type Fetcher<Handler> =
+  Handler extends RequestHandler<
+    infer RequestParams,
+    infer ResponseBody,
+    infer RequestBody
+  >
+    ? (options: {
+        params: RequestParams;
+        body: RequestBody;
+      }) => Promise<ResponseBody>
+    : never;
