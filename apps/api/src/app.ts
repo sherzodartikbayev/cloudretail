@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { HttpError } from './http';
+import { HttpError, registerRoute } from './http';
 import { ZodError } from 'zod';
 import { createToken } from './routers/tokens/createToken';
 
@@ -14,7 +14,7 @@ app.get('/', (_req, res) => {
   return res.status(200).json({ status: 'OK' });
 });
 
-app[createToken.method](createToken.path, createToken.handler);
+registerRoute(app, createToken);
 
 app.use((error: unknown, _req: Request, res: Response, _next: NextFunction) => {
   console.error(error);

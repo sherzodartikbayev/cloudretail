@@ -1,5 +1,5 @@
 import zod from 'zod';
-import { RequestHandler } from 'express';
+import { RequestHandler, Router } from 'express';
 
 export class HttpError extends Error {
   constructor(
@@ -38,6 +38,23 @@ export const createHandler = <RequestParams, RequestBody, ResponseBody>({
     });
     response.status(status).json(body);
   };
+};
+
+export const createRoute = <RequestParams, RequestBody, ResponseBody>(
+  route: Route<RequestParams, RequestBody, ResponseBody>,
+) => route;
+
+export type Route<RequestParams, RequestBody, ResponseBody> = {
+  method: 'get' | 'post' | 'put' | 'delete';
+  path: string;
+  handler: RequestHandler<RequestParams, ResponseBody, RequestBody>;
+};
+
+export const registerRoute = <RequestParams, RequestBody, ResponseBody>(
+  router: Router,
+  route: Route<RequestParams, RequestBody, ResponseBody>,
+) => {
+  router[route.method](route.path, route.handler);
 };
 
 export type Fetcher<Handler> =
