@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import { HttpError, registerRoute } from './http';
 import { ZodError } from 'zod';
 import { createToken } from './routers/tokens/createToken';
+import { getToken } from './routers/tokens/getToken';
 
 export const app = express();
 
@@ -15,6 +16,7 @@ app.get('/', (_req, res) => {
 });
 
 registerRoute(app, createToken);
+registerRoute(app, getToken);
 
 app.use((error: unknown, _req: Request, res: Response, _next: NextFunction) => {
   console.error(error);
