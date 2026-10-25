@@ -10,10 +10,10 @@ import {
   HttpError,
   HttpResponse,
 } from '../../http';
+import { createTokenEndpoint } from '../../endpoints';
 
 export const createToken = createRoute({
-  method: 'post',
-  path: '/tokens',
+  endpoint: createTokenEndpoint,
   handler: createHandler({
     bodySchema: zod.object({
       username: zod.string(),
