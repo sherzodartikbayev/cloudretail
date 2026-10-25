@@ -8,7 +8,7 @@ export const getToken = createRoute({
   handler: createHandler({
     process: async ({ params }) => {
       const token = await tokenDao.selectById(pool, {
-        id: (params as { id: number }).id,
+        id: (params as { id: string }).id,
       });
       return new HttpResponse(200, token);
     },
